@@ -1,0 +1,13 @@
+#!/bin/bash -e
+
+# If running the rails server then create or migrate existing database
+if [ "${1}" == "./bin/rails" ] && [ "${2}" == "server" ]; then
+  ./bin/rails db:prepare
+fi
+
+# Prepare the test database when running tests
+if [ "${1}" == "bundle" ] && [ "${2}" == "exec" ] && [ "${3}" == "rspec" ]; then
+  RAILS_ENV=test ./bin/rails db:prepare
+fi
+
+exec "${@}"

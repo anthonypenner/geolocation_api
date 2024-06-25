@@ -1,0 +1,1 @@
+class InvalidIpOrUrlError < StandardError; end
